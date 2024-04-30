@@ -38,6 +38,7 @@ async function extractLinks(html, startURL) {
   $('a').each((i, link) => {
     const href = $(link).attr('href');
     if ((href && href.startsWith('/') && href.length > 1) || (href && href.startsWith(startURL) && href.length > 1)) {
+      console.log("adding link", href);
       links.add(new URL(href, startURL).href);
     }
   });
