@@ -20,13 +20,11 @@ async function fetchURL(url) {
     const response = await axios.get(url, {
       headers: {
         'User-Agent': getRandomUserAgent()
+      },
+      validateStatus: function (status) {
+        return status < 400; // Resolve only if the status code is less than 400
       }
     });
-    if (response.data.errors) {
-      return;
-    } else {
-    return response.data;
-    }
   } catch (error) {
     console.error(`Error fetching ${url}: ${error}`);
     return null;
