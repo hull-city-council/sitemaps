@@ -29,13 +29,13 @@ async function fetchURL(url) {
   }
 }
 
-async function extractLinks(html) {
+async function extractLinks(html, startURL) {
   const $ = cheerio.load(html);
   const links = new Set();
   $('a').each((i, link) => {
     const href = $(link).attr('href');
     if (href && href.startsWith('/') && href.length > 1) {
-      links.add(new URL(href, url).href);
+      links.add(new URL(href, startURL).href);
     }
   });
   return links;
@@ -51,7 +51,7 @@ async function crawlSite(startURL) {
       visited.add(currentURL);
       const html = await fetchURL(currentURL);
       if (html) {
-        const links = await extractLinks(html);
+        const links = await extractLinks(html, startURL);
         links.forEach(link => {
           if (!visited.has(link)) {
             toVisit.push(link);
