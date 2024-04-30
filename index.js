@@ -77,8 +77,8 @@ async function generateSitemap(urls) {
 
 async function main() {
   const sites = [
-    { url: 'https://www.familyhubshull.org.uk', outputFile: './sitemap_familyhubs.xml' },
-    { url: 'https://www.livewellhull.org.uk', outputFile: './sitemap_livewellhull.xml' }
+    { url: 'https://www.familyhubshull.org.uk', outputFile: './maps/familyhubs/sitemap.xml' },
+    { url: 'https://www.livewellhull.org.uk', outputFile: './maps/livewellhull/sitemap.xml' }
   ];
 
   for (const site of sites) {
