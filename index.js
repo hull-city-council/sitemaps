@@ -24,7 +24,7 @@ async function fetchURL(url) {
     });
   } catch (error) {
     console.error(`Error fetching ${url}: ${error}`);
-    //return null;
+    return null;
   }
 }
 
