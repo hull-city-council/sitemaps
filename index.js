@@ -21,11 +21,12 @@ async function fetchURL(url) {
       headers: {
         'User-Agent': getRandomUserAgent()
       },
-      validateStatus: function (status) {
-        return status < 400; // Resolve only if the status code is less than 400
-      }
     });
-  } catch (error) {
+  } catch (function (error) {
+    if (error.response) {
+      console.error(`Response error fetching ${url}: ${error}`);
+      return null;
+    }
     console.error(`Error fetching ${url}: ${error}`);
     return null;
   }
