@@ -23,12 +23,8 @@ async function fetchURL(url) {
       },
     });
   } catch (error) {
-    if (error.response) {
-      console.error(`Response error fetching ${url}: ${error}`);
-      return;
-    }
     console.error(`Error fetching ${url}: ${error}`);
-    return null;
+    //return null;
   }
 }
 
