@@ -22,7 +22,11 @@ async function fetchURL(url) {
         'User-Agent': getRandomUserAgent()
       }
     });
+    if (response.data.errors) {
+      return;
+    } else {
     return response.data;
+    }
   } catch (error) {
     console.error(`Error fetching ${url}: ${error}`);
     return null;
