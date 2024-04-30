@@ -23,6 +23,10 @@ async function fetchURL(url) {
       },
     });
   } catch (error) {
+    if (error.response) {
+      console.error(`Response error fetching ${url}: ${error}`);
+      return null;
+    }
     console.error(`Error fetching ${url}: ${error}`);
     return null;
   }
@@ -33,7 +37,7 @@ async function extractLinks(html, startURL) {
   const links = new Set();
   $('a').each((i, link) => {
     const href = $(link).attr('href');
-    if (href && href.startsWith('/') && href.length > 1) {
+    if (href && href.startsWith('/') && href.length > 1 || href && href.startsWith(startURL) && href.length > 1) {
       links.add(new URL(href, startURL).href);
     }
   });
