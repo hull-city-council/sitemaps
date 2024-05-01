@@ -22,6 +22,7 @@ async function fetchURL(url) {
         'User-Agent': getRandomUserAgent()
       },
     });
+    return response.data;
   } catch (error) {
     if (error.response) {
       console.error(`Response error fetching ${url}: ${error}`);
@@ -32,40 +33,52 @@ async function fetchURL(url) {
   }
 }
 
-async function extractLinks(html, startURL) {
-  const $ = cheerio.load(html);
-  const links = new Set();
-  $('a').each((i, link) => {
-    const href = $(link).attr('href');
-    if (href && href.startsWith('/') && href.length > 1) {
-      console.log("adding link", href);
-      links.add(new URL(href, startURL).href);
-    }
-  });
-  return links;
-}
+function normalizeURL(href, baseURL) {
+    const url = new URL(href, baseURL);
+    url.search = ''; // Remove query parameters
+    url.hash = ''; // Remove fragment identifiers
+    return url.href;
+  }
+
+
+  async function extractLinks(html, baseURL) {
+    const $ = cheerio.load(html);
+    const links = new Set();
+    $('a').each((i, link) => {
+      const href = $(link).attr('href');
+      if (href) {
+        const normalizedHref = normalizeURL(href, baseURL);
+        if (normalizedHref.startsWith(baseURL)) {
+          links.add(normalizedHref);
+        }
+      }
+    });
+    return links;
+  }
 
 async function crawlSite(startURL) {
-  const visited = new Set();
-  const toVisit = [startURL];
-
-  while (toVisit.length > 0) {
-    const currentURL = toVisit.pop();
-    if (!visited.has(currentURL)) {
-      visited.add(currentURL);
-      const html = await fetchURL(currentURL);
-      if (html) {
-        const links = await extractLinks(html, startURL);
-        links.forEach(link => {
-          if (!visited.has(link)) {
-            toVisit.push(link);
-          }
-        });
+    const visited = new Set();
+    const toVisit = new Set([startURL]);
+  
+    while (toVisit.size > 0) {
+      const currentURL = toVisit.values().next().value;
+      toVisit.delete(currentURL);
+  
+      if (!visited.has(currentURL)) {
+        visited.add(currentURL);
+        const html = await fetchURL(currentURL);
+        if (html) {
+          const links = await extractLinks(html, startURL);
+          links.forEach(link => {
+            if (!visited.has(link) && !toVisit.has(link)) {
+              toVisit.add(link);
+            }
+          });
+        }
       }
     }
+    return visited;
   }
-  return visited;
-}
 
 async function generateSitemap(urls) {
   const sitemap = {
