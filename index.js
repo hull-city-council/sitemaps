@@ -94,8 +94,9 @@ async function generateSitemap(urls) {
 
 async function main() {
   const sites = [
-    { url: 'https://www.familyhubshull.org.uk', outputFile: './familyhubs_sitemap.xml' },
-    { url: 'https://www.livewellhull.org.uk', outputFile: './livewellhull_sitemap.xml' }
+    { url: 'https://www.hullmuseums.co.uk', outputFile: './hullmuseums_sitemap.xml' }
+    // { url: 'https://www.familyhubshull.org.uk', outputFile: './familyhubs_sitemap.xml' },
+    // { url: 'https://www.livewellhull.org.uk', outputFile: './livewellhull_sitemap.xml' }
   ];
 
   for (const site of sites) {
