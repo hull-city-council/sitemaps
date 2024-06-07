@@ -153,7 +153,7 @@ async function main() {
     },
     { 
       url: 'https://hullsendlocaloffer.org.uk', outputFile: './hullsendlocaloffer_sitemap.xml'
-    },
+    }
   ];
 
   for (const site of sites) {
