@@ -94,9 +94,66 @@ async function generateSitemap(urls) {
 
 async function main() {
   const sites = [
-    { url: 'https://www.hullmuseums.co.uk', outputFile: './hullmuseums_sitemap.xml' }
-    // { url: 'https://www.familyhubshull.org.uk', outputFile: './familyhubs_sitemap.xml' },
-    // { url: 'https://www.livewellhull.org.uk', outputFile: './livewellhull_sitemap.xml' }
+    {
+      url: 'https://www.hullmuseums.co.uk', outputFile: './hullmuseums_sitemap.xml' 
+    },
+    { 
+      url: 'https://www.familyhubshull.org.uk', outputFile: './familyhubs_sitemap.xml' 
+    },
+    { 
+      url: 'https://www.livewellhull.org.uk', outputFile: './livewellhull_sitemap.xml' 
+    },
+    { 
+      url: 'https://www.workingforhullcitycouncil.org.uk', outputFile: './workingforhullcitycouncil_sitemap.xml'
+    },
+    { 
+      url: 'https://www.travelhull.co.uk', outputFile: './travelhull_sitemap.xml'
+    },
+    { 
+      url: 'https://www.hcandl.co.uk', outputFile: './hcandl_sitemap.xml'
+    },
+    { 
+      url: 'https://www.hullfostering.co.uk', outputFile: './hullfostering_sitemap.xml'
+    },
+    { 
+      url: 'https://hullguildhall.org.uk', outputFile: './hullguildhall_sitemap.xml'
+    },
+    { 
+      url: 'https://www.hull.gov.uk/hulldistrictheating', outputFile: './hulldistrictheating_sitemap.xml'
+    },
+    { 
+      url: 'https://www.weddingsandceremoniesinhull.org.uk', outputFile: './weddingsandceremoniesinhull_sitemap.xml'
+    },
+    { 
+      url: 'https://www.hulltheatres.co.uk/', outputFile: './hulltheatres_sitemap.xml'
+    },
+    { 
+      url: 'https://www.hullwarmhomes.org.uk', outputFile: './hullwarmhomes_sitemap.xml'
+    },
+    { 
+      url: 'https://www.hullcollaborativepartnership.org.uk', outputFile: './hullcollaborativepartnership_sitemap.xml'
+    },
+    { 
+      url: 'https://www.hull.gov.uk/commercialproperty', outputFile: './commercialproperty_sitemap.xml'
+    },
+    { 
+      url: 'https://www.hullbereavementservices.org.uk', outputFile: './hullbereavementservices_sitemap.xml'
+    },
+    { 
+      url: 'https://www.liveithull.co.uk', outputFile: './liveithull_sitemap.xml'
+    },
+    { 
+      url: 'https://www.hulllibraries.co.uk', outputFile: './hulllibraries_sitemap.xml'
+    },
+    { 
+      url: 'https://www.hulladventure.co.uk', outputFile: './hulladventure_sitemap.xml'
+    },
+    { 
+      url: 'https://www.traumainformedhull.org.uk', outputFile: './traumainformedhull_sitemap.xml'
+    },
+    { 
+      url: 'https://hullsendlocaloffer.org.uk', outputFile: './hullsendlocaloffer_sitemap.xml'
+    },
   ];
 
   for (const site of sites) {
